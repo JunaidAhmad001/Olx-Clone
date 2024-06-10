@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RouteComponent from './pages/Route';
+import Categories from './components/PostAdd';
+import SelectCatForm from './components/SelectCatForm';
+import MobileList from './components/MobileList';
+import ProductSelect from './components/SelectedProduct'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <RouteComponent />,
+      children: [{ path: 'home', element: <RouteComponent /> }],
+    },
+    {
+      path: 'post',
+      element: (
+        <Categories
+          setSelectedCategory={setSelectedCategory}
+          setSelectedSubcategory={setSelectedSubcategory}
+          selectedCategory={selectedCategory}
+          selectedSubcategory={selectedSubcategory}
+        />
+      ),
+    },
+    {
+      path: 'home/:category',
+      element: <MobileList />,
+    },
+    {
+      path: 'home/:category/:id',
+      element: <ProductSelect />,
+    },
+    {
+      path: 'post/attributes',
+      element: (
+        <SelectCatForm
+          setSelectedCategory={setSelectedCategory}
+          setSelectedSubcategory={setSelectedSubcategory}
+          selectedCategory={selectedCategory}
+          selectedSubcategory={selectedSubcategory}
+        />
+      ),
+    },
+  ]);
+
+  console.log('App rendering with selectedCategory:', selectedCategory);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
