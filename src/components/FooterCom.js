@@ -64,7 +64,7 @@ const Footer = () => {
             
               </Box>
             </Box>
-            <Box border={'2px solid red'} display={'flex'} my={2}>
+            <Box  display={'flex'} my={2}>
               <Box display="flex" justifyContent='center' >
               <Link href="#" color="inherit" mr={2}>
                   <Apple />

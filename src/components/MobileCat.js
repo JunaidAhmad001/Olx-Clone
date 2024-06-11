@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -12,6 +11,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from "@mui/material/Link";
+import S1 from '../images/dummy.png';
 
 const categories = [
   { price: "$500", description: "Latest mobile phones", city: "New York", image: "1.png" },
@@ -85,9 +85,10 @@ const MobileCat = () => {
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
-                  sx={{ height: 240 }}
-                  image={require(`../images/${category.image}`)}
+                  component="img"
+                  image={S1}
                   title={category.description}
+                  sx={{ maxHeight: 240, objectFit: 'cover' }}
                 />
                 <CardContent>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -97,12 +98,11 @@ const MobileCat = () => {
                     <FavoriteBorderOutlinedIcon />
                   </Box>
                 </CardContent>
-                  <CardContent>
-                    
+                <CardContent>
                   <Typography variant="body2" color="text.secondary">
                     {category.description}
                   </Typography>
-                  </CardContent>
+                </CardContent>
                 <CardContent>
                   <Typography color="text.secondary">{category.city}</Typography>
                   <Typography variant="caption" color="text.secondary">

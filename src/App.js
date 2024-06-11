@@ -5,6 +5,7 @@ import Categories from './components/PostAdd';
 import SelectCatForm from './components/SelectCatForm';
 import MobileList from './components/MobileList';
 import ProductSelect from './components/SelectedProduct'
+import Profile from './components/Profile';
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
@@ -45,8 +46,15 @@ function App() {
         />
       ),
     },
+    {
+      path: 'profile',
+      element: (
+        <Profile />
+        
+      ),
+    },
   ]);
-
+   
   console.log('App rendering with selectedCategory:', selectedCategory);
 
   return <RouterProvider router={router} />;

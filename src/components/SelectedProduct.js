@@ -7,60 +7,54 @@ import {
   Typography,
   Button,
   IconButton,
+  Avatar,
 } from "@mui/material";
 import { Carousel } from "antd";
 import CategoriesMenu from "./CategoriesMenu";
-import ImageS from "../images/carousel1.png";
+import ImageS from "../images/1.png";
 import ImageS2 from "../images/carosel2.png";
 import { FavoriteBorder } from "@mui/icons-material";
 import ShareIcon from "@mui/icons-material/Share";
+import { useNavigate, Link } from "react-router-dom";
 const contentStyle = {
-  height: "500px", // Change height to auto to maintain aspect ratio
-  width: "100%", // Set width to 100%
-  textAlign: "center",
+  height: "400px",
+  width: "100%",
+  objectFit: "contain", // Ensure the image fits within the container
+  backgroundColor: "black",
 };
+
 const items = [
   {
     id: 1,
-    title: "IPhone 15 Pro Max 256 HK ",
+    title: "IPhone 15 Pro Max 256 HK",
     price: "358,000",
     location: "Johar Town Phase 1, Lahore",
+    description:
+      "Tecno camon 20 8/256 with box and charger most demanding colour in neat condition no any fault with box and charger No Open No repair 100% orignal 36k dead final Only call JazakAllah",
     date: "5 days ago",
     image: "../images/1.jpg",
   },
-  {
-    id: 2,
-    title: "IPhone 15 Pro Max 256 HK",
-    price: "19,900",
-    location: "Johar Town, Lahore",
-    date: "1 day ago",
-    image: "/path/to/image.jpg",
-  },
-  {
-    id: 3,
-    title: "IPhone 15 Pro Max 256 HK",
-    price: "19,900",
-    location: "Johar Town, Lahore",
-    date: "1 day ago",
-    image: "/path/to/image.jpg",
-  },
   // Add more items as needed
 ];
-const productSelect = () => {
+
+const ProductSelect = () => {
+  const navigate = useNavigate();
+  const goToProfile = () => {
+    navigate("profile");
+  };
   return (
     <Container maxWidth="xl" sx={{ my: 5 }}>
       <CategoriesMenu />
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 5 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-around", mt: 5 }}>
         <Box
           sx={{
-            width: "65%",
+            width: "650px",
             backgroundColor: "black",
             borderRadius: "sm",
-            pl: 10,
-            pr: 10,
+            padding: 10,
           }}
         >
-          <Carousel autoplay arrows infinite={false}>
+          <Carousel autoplay arrows infinite={true}>
             <div>
               <img style={contentStyle} src={ImageS} alt="Image 1" />
             </div>
@@ -72,13 +66,54 @@ const productSelect = () => {
         <Box sx={{ width: "30%" }}>
           <Card variant="outlined">
             <CardContent>
-              <Typography variant="h6" component="div">
-                Agha Mohsin Raza
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Member since Dec 2020
-              </Typography>
-              <Button variant="contained" fullWidth>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                <Avatar
+                  sx={{ mr: 2, width: 58, height: 58 }}
+                  aria-label="recipe"
+                >
+                  R
+                </Avatar>
+                <Box>
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: "700",
+                      color: "#002f34",
+                    }}
+                  >
+                    userName
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: "400",
+                      color: "#002f34",
+                    }}
+                  >
+                    Member since Dec 2020
+                  </Typography>
+                  {/* <Typography onClick={goToProfile} sx={{fontSize:'14px', fontWeight:"700",color:"#002f34"}}>
+                  see profile 
+                  </Typography> */}
+                  <Link
+                    to={`/profile`}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "14px",
+                      fontWeight: "700",
+                      color: "#002f34",
+                    }}
+                  >
+                    <Typography> see profile </Typography>
+                  </Link>
+                </Box>
+              </Box>
+
+              <Button
+                variant="contained"
+                sx={{ backgroundColor: "#002f34" }}
+                fullWidth
+              >
                 Show phone number
               </Button>
               <Button variant="outlined" fullWidth sx={{ mt: 1 }}>
@@ -100,189 +135,212 @@ const productSelect = () => {
           </Card>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 5 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 2,
+          mt: 5,
+          ml: 8,
+          width: "50%",
+        }}
+      >
         {items.map((item) => (
-          <Box
-            key={item.id}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              mb: 2,
-              border: "1px solid #e0e0e0",
-              borderRadius: 1,
-              padding: 2,
-            }}
-          >
-            <CardContent sx={{ flex: "1 0 auto" }}>
-              <Typography
-                variant="h3"
-                color="002f34"
-                component="div"
-                fontWeight={700}
-              >
-                Rs {item.price}
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 30,
-                    color: "black",
-                  }}
-                >
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    color: "black",
-                  }}
-                >
-                  <FavoriteBorder />
-                </IconButton>
-              </Typography>
-              <Typography
-                component="div"
-                variant="h6"
-                sx={{ color: "#002f34" }}
-                fontWeight={700}
-              >
-                {item.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                component="div"
-              >
-                {item.location}
-              </Typography>
-              <Box sx={{ display: "flex", top: 0, right: 0 }}>
+          <React.Fragment key={item.id}>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+                mb: 2,
+                border: "1px solid #e0e0e0",
+                borderRadius: 1,
+                padding: 2,
+              }}
+            >
+              <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography
-                  variant="body2"
-                  color="text.secondary"
+                  variant="h3"
+                  color="#002f34"
                   component="div"
+                  fontWeight={700}
                 >
-                  {item.date}
+                  Rs {item.price}
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      right: 30,
+                      color: "black",
+                    }}
+                  >
+                    <ShareIcon />
+                  </IconButton>
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      right: 0,
+                      color: "black",
+                    }}
+                  >
+                    <FavoriteBorder />
+                  </IconButton>
                 </Typography>
-              </Box>
-            </CardContent>
+                <Typography
+                  mt={1}
+                  component="div"
+                  variant="h6"
+                  sx={{ color: "#002f34" }}
+                  fontWeight={700}
+                >
+                  {item.title}
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    mt: 1,
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    {item.location}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    {item.date}
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Box>
+
             {/* ---------------------------------------------Details------------------------------- */}
-            <CardContent sx={{ flex: "1 0 auto" }}>
-              <Typography
-                variant="h3"
-                color="002f34"
-                component="div"
-                fontWeight={700}
-              >
-                Rs {item.price}
-                <IconButton
+
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+                mb: 2,
+                border: "1px solid #e0e0e0",
+                borderRadius: 1,
+                padding: 2,
+              }}
+            >
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography
+                  variant="h3"
+                  color="#002f34"
+                  component="div"
+                  fontWeight={700}
+                  sx={{ marginBottom: 2 }}
+                >
+                  Details
+                </Typography>
+                <Box
                   sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 30,
-                    color: "black",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: 2,
                   }}
                 >
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    color: "black",
-                  }}
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    component="div"
+                    fontWeight={400}
+                    sx={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <span>Is Deliverable</span>
+                    <span>No</span>
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="#002f34"
+                    component="div"
+                    fontWeight={700}
+                    sx={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <span style={{ color: "text.secondary" }}>Brand</span>
+                    <span>Tecno</span>
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    component="div"
+                    sx={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <span fontWeight={400}>Price</span>
+                    <span fontWeight={700}>37,500</span>
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    component="div"
+                    sx={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <span fontWeight={400}>Condition</span>
+                    <span fontWeight={700}>Used</span>
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Box>
+
+            {/* ---------------------------------------------Description------------------------------- */}
+
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+                mb: 2,
+                border: "1px solid #e0e0e0",
+                borderRadius: 1,
+                padding: 2,
+              }}
+            >
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography
+                  variant="h3"
+                  color="002f34"
+                  component="div"
+                  fontWeight={700}
                 >
-                  <FavoriteBorder />
-                </IconButton>
-              </Typography>
-              <Typography
-                component="div"
-                variant="h6"
-                sx={{ color: "#002f34" }}
-                fontWeight={700}
-              >
-                {item.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                component="div"
-              >
-                {item.location}
-              </Typography>
-              <Box sx={{ display: "flex", top: 0, right: 0 }}>
+                  Description
+                </Typography>
+                <Typography
+                  component="div"
+                  variant="h6"
+                  sx={{ color: "#002f34" }}
+                  fontWeight={700}
+                >
+                  {item.title}
+                </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   component="div"
                 >
-                  {item.date}
+                  {item.description}
                 </Typography>
-              </Box>
-              {/* ---------------------------------------------Description------------------------------- */}
-            </CardContent>
-            <CardContent sx={{ flex: "1 0 auto" }}>
-              <Typography
-                variant="h3"
-                color="002f34"
-                component="div"
-                fontWeight={700}
-              >
-                Rs {item.price}
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 30,
-                    color: "black",
-                  }}
-                >
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    color: "black",
-                  }}
-                >
-                  <FavoriteBorder />
-                </IconButton>
-              </Typography>
-              <Typography
-                component="div"
-                variant="h6"
-                sx={{ color: "#002f34" }}
-                fontWeight={700}
-              >
-                {item.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                component="div"
-              >
-                {item.location}
-              </Typography>
-              <Box sx={{ display: "flex", top: 0, right: 0 }}>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  component="div"
-                >
-                  {item.date}
-                </Typography>
-              </Box>
-            </CardContent>
-          </Box>
+              </CardContent>
+            </Box>
+          </React.Fragment>
         ))}
       </Box>
     </Container>
   );
 };
 
-export default productSelect;
+export default ProductSelect;

@@ -12,7 +12,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from "@mui/material/Link";
-
+import S1 from '../images/dummy.png'
 const categories = [
   { price: "$500", description: "Latest mobile phones", city: "New York", image: "1.png" },
   { price: "$2000", description: "Cars and bikes", city: "Los Angeles", image: "2.png" },
@@ -84,10 +84,11 @@ const CarCategories = () => {
           {categories.slice(currentIndex, currentIndex + itemsPerPage).map((category, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  sx={{ height: 240 }}
-                  image={require(`../images/${category.image}`)}
+              <CardMedia
+                  component="img"
+                  image={S1}
                   title={category.description}
+                  sx={{ maxHeight: 240, objectFit: 'cover' }}
                 />
                 <CardContent>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
