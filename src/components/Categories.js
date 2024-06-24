@@ -24,13 +24,13 @@ const AvatarCategories = () => {
   ];
 
   return (
-    <Container maxWidth="lg">
-      <Typography variant="h6" gutterBottom>
+    <Container maxWidth="xl" >
+      <Typography variant="h6" sx={{ml:5}} gutterBottom>
         All Categories
       </Typography>
-      <Grid container >
+      <Grid container spacing={1}>
         {[...Array(totalAvatars)].map((_, index) => (
-          <Grid item key={index} xs={6} sm={4} md={2} lg={2} xl={1} ml={3}>
+          <Grid item key={index} xs={6} sm={4} md={2} lg={2} xl={1} ml={4} >
             <Avatar
               alt={`Category ${index + 1}`}
               src={require(`../images/${index + 1}.png`)}

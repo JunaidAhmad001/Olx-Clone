@@ -11,7 +11,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from "@mui/material/Link";
-import S1 from '../images/dummy.png';
+import S1 from '../images/mobile.jpg';
 
 const categories = [
   { price: "$500", description: "Latest mobile phones", city: "New York", image: "1.png" },
@@ -45,8 +45,8 @@ const MobileCat = () => {
   };
 
   return (
-    <Container maxWidth="lg" spacing={2}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+    <Container maxWidth="xl">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
         <Typography variant="h6" gutterBottom>
           Mobile phones
         </Typography>
@@ -80,31 +80,32 @@ const MobileCat = () => {
         >
           <KeyboardArrowLeftIcon />
         </Button>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {categories.slice(currentIndex, currentIndex + itemsPerPage).map((category, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card sx={{ maxWidth: 345 }}>
+            <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={index}>
+              <Card sx={{ maxWidth: 345, maxHeight: 350 }}>
                 <CardMedia
                   component="img"
                   image={S1}
                   title={category.description}
-                  sx={{ maxHeight: 240, objectFit: 'cover' }}
+                  sx={{ height: 150, objectFit: 'cover' }}
                 />
-                <CardContent>
+                <CardContent sx={{ paddingBottom: 0 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Typography variant="h6" sx={{ color: 'black' }}>
+                    <Typography variant="body1" sx={{ color: 'black' }}>
                       {category.price}
                     </Typography>
                     <FavoriteBorderOutlinedIcon />
                   </Box>
-                </CardContent>
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 3.2 }}>
                     {category.description}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {category.city}
                   </Typography>
                 </CardContent>
                 <CardContent>
-                  <Typography color="text.secondary">{category.city}</Typography>
+
                   <Typography variant="caption" color="text.secondary">
                     2 days
                   </Typography>

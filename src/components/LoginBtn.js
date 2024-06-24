@@ -1,11 +1,8 @@
 import React from "react";
-import Button  from "@mui/material/Button";
+import SignInGoogle from "../components/SignInGoogle"; // Adjust the path as necessary
 
-function LoginButton(){
-    return(
-        <Button  variant="inlined" size="small " >
-          Login
-        </Button>
-    )
+function LoginButton() {
+  return <SignInGoogle />;
 }
+
 export default LoginButton;

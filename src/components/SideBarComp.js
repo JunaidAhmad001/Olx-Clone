@@ -84,7 +84,7 @@ export default function Sidebar({ selectedCategory, subcategories }) {
           />
         </Box>
       </Box>
-      <Box sx={{ marginTop: 15 }}>
+      <Box sx={{ marginTop: 15,width:'100%'}}>
         <CategoryView />
       </Box>
     </Box>

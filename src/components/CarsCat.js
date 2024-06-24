@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -12,7 +11,8 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from "@mui/material/Link";
-import S1 from '../images/dummy.png'
+import S1 from '../images/dummy.png';
+
 const categories = [
   { price: "$500", description: "Latest mobile phones", city: "New York", image: "1.png" },
   { price: "$2000", description: "Cars and bikes", city: "Los Angeles", image: "2.png" },
@@ -45,10 +45,10 @@ const CarCategories = () => {
   };
 
   return (
-    <Container maxWidth="lg" spacing={2}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+    <Container maxWidth="xl">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
         <Typography variant="h6" gutterBottom>
-         Cars 
+          Cars
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Link href="/" sx={{ typography: 'body1', color: '#3a77ff', display: 'flex', alignItems: 'center' }}>
@@ -80,33 +80,29 @@ const CarCategories = () => {
         >
           <KeyboardArrowLeftIcon />
         </Button>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {categories.slice(currentIndex, currentIndex + itemsPerPage).map((category, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
+            <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={index}>
+              <Card sx={{ maxWidth: 345, maxHeight: 300 }}>
+                <CardMedia
                   component="img"
                   image={S1}
                   title={category.description}
-                  sx={{ maxHeight: 240, objectFit: 'cover' }}
+                  sx={{ height: 180, objectFit: 'cover' }}
                 />
-                <CardContent>
+                <CardContent sx={{ paddingBottom: 0 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Typography variant="h6" sx={{ color: 'black' }}>
+                    <Typography variant="body1" sx={{ color: 'black' }}>
                       {category.price}
                     </Typography>
                     <FavoriteBorderOutlinedIcon />
                   </Box>
-                 
-                </CardContent>
-                  <CardContent>
-                    
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 2.2 }}>
                     {category.description}
                   </Typography>
-                  </CardContent>
-                <CardContent>
-                  <Typography color="text.secondary">{category.city}</Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {category.city}
+                  </Typography>
                   <Typography variant="caption" color="text.secondary">
                     2 days
                   </Typography>

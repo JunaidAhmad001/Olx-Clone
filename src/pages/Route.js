@@ -9,7 +9,7 @@ import CarCategories from '../components/CarsCat';
 import Footer from '../components/FooterCom';
 import SmallFooter from '../components/SmallFooter';
 import SellBtn from '../components/SellBtn';
-
+import { Container } from '@mui/material';
 function Route() {
   return (
     <>
@@ -17,10 +17,13 @@ function Route() {
       <div style={{ marginTop: '120px', padding: '20px' }}>
         <CategoriesMenu />
       </div>
+
       <ImageScroll />
-      <AvatarCategories />
+      <Container maxWidth="xl">
+      <AvatarCategories/>
       <MobileCat />
       <CarCategories />
+      </Container>
       
 
       <Footer />

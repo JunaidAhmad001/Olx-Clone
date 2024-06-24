@@ -6,6 +6,7 @@ import SelectCatForm from './components/SelectCatForm';
 import MobileList from './components/MobileList';
 import ProductSelect from './components/SelectedProduct'
 import Profile from './components/Profile';
+import SignInGoogle from './components/SignInGoogle';
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
@@ -50,6 +51,13 @@ function App() {
       path: 'profile',
       element: (
         <Profile />
+        
+      ),
+    },
+    {
+      path: '/',
+      element: (
+        <SignInGoogle />
         
       ),
     },

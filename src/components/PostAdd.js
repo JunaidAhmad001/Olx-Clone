@@ -1,16 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Grid,
   Container,
   Avatar,
   Typography,
   Card,
-  CardHeader,
   IconButton,
   Box,
-} from '@mui/material';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+  CardHeader,
+} from "@mui/material";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const AvatarCategories = ({
   setSelectedCategory,
@@ -19,127 +19,219 @@ const AvatarCategories = ({
   selectedSubcategory,
 }) => {
   const navigate = useNavigate();
+  // const [selectedCategory, setSelectedCategory] = useState(null);
+  // const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [isDetailView, setIsDetailView] = useState(false); // State to toggle view
 
-  const totalAvatars = 14;
   const names = [
-    'Mobile',
-    'Vehicles',
-    'Properties for Sale',
-    'Properties for Rent',
-    'Electronics and Home Appliances',
-    'Bikes, Business Industrial',
-    'Services',
-    'Jobs',
-    'Animal',
-    'Furniture',
-    'Fashion',
-    'Books',
-    'Kids',
-    'Kids',
+    "Mobiles",
+    "Vehicles",
+    "Property for Sale",
+    "Property for Rent",
+    "Electronics & Home Appliances",
+    "Bikes",
+    "Services",
+    "Jobs",
+    "Animals",
+    "Furniture & Home Decor",
+    "Fashion & Beauty",
+    "Books, Sports & Hobbies",
+    "Kids",
   ];
 
   const subcategories = {
-    Mobile: ['Smartphones', 'Accessories', 'Tablets'],
-    Vehicles: ['Cars', 'Motorcycles', 'Trucks'],
-    'Properties for Sale': ['Houses', 'Apartments', 'Land'],
-    'Properties for Rent': ['Houses', 'Apartments', 'Rooms'],
-    'Electronics and Home Appliances': ['TVs', 'Refrigerators', 'Washing Machines'],
-    'Bikes, Business Industrial': ['Mountain Bikes', 'Road Bikes', 'Electric Bikes'],
-    Services: ['Home Services', 'Business Services', 'Personal Services'],
-    Jobs: ['Full-Time', 'Part-Time', 'Freelance'],
-    Animal: ['Dogs', 'Cats', 'Birds'],
-    Furniture: ['Sofas', 'Tables', 'Chairs'],
-    Fashion: ['Men', 'Women', 'Kids'],
-    Books: ['Fiction', 'Non-Fiction', 'Textbooks'],
-    Kids: ['Toys', 'Clothes', 'Books'],
+    Mobiles: ["Smartphones", "Accessories", "Tablets"],
+    Vehicles: [
+      "Cars",
+      "Cars on Installments",
+      "Car Accessories",
+      "Spare Parts",
+      "Buses, Vans & Trucks",
+      "Rickshaw & Chingchi",
+      "Other Vehicles",
+      "Boats",
+      "Tractors & Trailers",
+    ],
+    "Property for Sale": ["Houses", "Apartments", "Land"],
+    "Property for Rent": ["Houses", "Apartments", "Rooms"],
+    "Electronics & Home Appliances": [
+      "TVs",
+      "Refrigerators",
+      "Washing Machines",
+    ],
+    Bikes: ["Mountain Bikes", "Road Bikes", "Electric Bikes"],
+    Services: ["Home Services", "Business Services", "Personal Services"],
+    Jobs: ["Full-Time", "Part-Time", "Freelance"],
+    Animals: ["Dogs", "Cats", "Birds"],
+    "Furniture & Home Decor": ["Sofas", "Tables", "Chairs"],
+    "Fashion & Beauty": ["Men", "Women", "Kids"],
+    "Books, Sports & Hobbies": ["Fiction", "Non-Fiction", "Textbooks"],
+    Kids: ["Toys", "Clothes", "Books"],
   };
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+
     setSelectedSubcategory(null); // Reset selected subcategory
+    setIsDetailView(true); // Switch to detail view
   };
 
   const handleSubcategoryClick = (subcategory) => {
     setSelectedSubcategory(subcategory);
-    navigate('/post/attributes');
+    navigate("/post/attributes");
   };
 
   return (
-    <Container maxWidth="xl">
-      <Typography variant="h6" gutterBottom>
-        Post an Ad
+    <Container maxWidth="md">
+      <Typography variant="h5" align="center" gutterBottom sx={{ my: 2 }}>
+        Choose a category
       </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Box sx={{ border: '2px red solid' }}>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-              {names.map((name, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleCategoryClick(name)}
-                  style={{
-                    marginBottom: '10px',
-                    backgroundColor: selectedCategory === name ? 'lightblue' : 'transparent',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.3s ease',
-                  }}
-                >
-                  <Card sx={{ cursor: 'pointer' }}>
-                    <CardHeader
-                      avatar={
-                        <Avatar
-                          alt={`Category ${index + 1}`}
-                          src={require(`../images/${index + 1}.png`)}
-                        />
-                      }
-                      action={
-                        <IconButton aria-label="settings">
-                          <KeyboardArrowRightIcon />
-                        </IconButton>
-                      }
-                      title={
-                        <Typography variant="subtitle2" align="left">
-                          {name}
-                        </Typography>
-                      }
-                    />
-                  </Card>
-                </li>
-              ))}
-            </ul>
-          </Box>
+      {!isDetailView ? (
+        <Grid container spacing={2}>
+          {names.map((name, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                onClick={() => handleCategoryClick(name)}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  padding: "10px",
+                  backgroundColor:
+                    selectedCategory === name ? "lightblue" : "transparent",
+                  transition: "background-color 0.3s ease",
+                }}
+              >
+                <Avatar
+                  alt={`Category ${index + 1}`}
+                  src={require(`../images/${index + 1}.png`)}
+                  sx={{ width: 56, height: 56, marginRight: 2 }}
+                />
+                <Typography variant="subtitle1" flexGrow={1}>
+                  {name}
+                </Typography>
+                <IconButton>
+                  <KeyboardArrowRightIcon />
+                </IconButton>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-        <Grid item xs={12} md={6}>
-          {selectedCategory && (
-            <Box sx={{ border: '2px green solid', padding: '10px' }}>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                {subcategories[selectedCategory].map((subcat, subindex) => (
-                  <li
-                    key={subindex}
-                    onClick={() => handleSubcategoryClick(subcat)}
-                    style={{
-                      marginBottom: '10px',
-                      backgroundColor: selectedSubcategory === subcat ? 'lightgreen' : 'transparent',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.3s ease',
-                    }}
-                  >
-                    <Card sx={{ cursor: 'pointer' }}>
-                      <CardHeader
-                        title={
-                          <Typography variant="subtitle2" align="left">
-                            {subcat}
-                          </Typography>
-                        }
+      ) : (
+        <Box sx={{ marginTop: 4 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={4}>
+              <Typography variant="h6" align="center" gutterBottom>
+                Categories
+              </Typography>
+              <Grid container spacing={2}>
+                {names.map((name, index) => (
+                  <Grid item xs={12} sm={12} key={index}>
+                    <Card
+                      onClick={() => handleCategoryClick(name)}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        cursor: "pointer",
+                        padding: "10px",
+                        backgroundColor:
+                          selectedCategory === name
+                            ? "lightblue"
+                            : "transparent",
+                        transition: "background-color 0.3s ease",
+                      }}
+                    >
+                      <Avatar
+                        alt={`Category ${index + 1}`}
+                        src={require(`../images/${index + 1}.png`)}
+                        sx={{ width: 56, height: 56, marginRight: 2 }}
                       />
+                      <Typography variant="subtitle1" flexGrow={1}>
+                        {name}
+                      </Typography>
+                      <IconButton>
+                        <KeyboardArrowRightIcon />
+                      </IconButton>
                     </Card>
-                  </li>
+                  </Grid>
                 ))}
-              </ul>
-            </Box>
-          )}
-        </Grid>
-      </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={6} md={8}>
+              <Typography variant="h6" align="center" gutterBottom>
+                {selectedCategory} Subcategories
+              </Typography>
+              {/* <Grid container spacing={2}>
+                {subcategories[selectedCategory].map((subcat, subindex) => (
+                  <Grid item xs={12} sm={6} md={6} key={subindex}>
+                    <Card
+                      onClick={() => handleSubcategoryClick(subcat)}
+                      sx={{
+                        cursor: 'pointer',
+                        padding: '10px',
+                        backgroundColor: selectedSubcategory === subcat ? 'lightgreen' : 'transparent',
+                        transition: 'background-color 0.3s ease',
+                      }}
+                    >
+                      <Typography variant="subtitle2" align="center">
+                        {subcat}
+                      </Typography>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid> */}
+              <Grid item xs={12} md={6}>
+                {selectedCategory && (
+                  <Box sx={{ padding: "10px" }}>
+                    <ul style={{ listStyleType: "none", padding: 0 }}>
+                      {subcategories[selectedCategory].map(
+                        (subcat, subindex) => (
+                          <li
+                            key={subindex}
+                            onClick={() => handleSubcategoryClick(subcat)}
+                            style={{
+                              marginBottom: "10px",
+                              backgroundColor:
+                                selectedSubcategory === subcat
+                                  ? "lightgreen"
+                                  : "transparent",
+                              cursor: "pointer",
+                              transition: "background-color 0.3s ease",
+                            }}
+                          >
+                            <Card sx={{ cursor: "pointer" }}>
+                              <CardHeader
+                                title={
+                                  <Typography variant="subtitle2" align="left">
+                                    {subcat}
+                                  </Typography>
+                                }
+                              />
+                            </Card>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </Box>
+                )}
+              </Grid>
+            </Grid>
+          </Grid>
+          <Box sx={{ marginTop: 2, textAlign: "center" }}>
+            <Typography
+              variant="body2"
+              onClick={() => setIsDetailView(false)}
+              sx={{
+                cursor: "pointer",
+                color: "blue",
+                textDecoration: "underline",
+              }}
+            >
+              Back to categories
+            </Typography>
+          </Box>
+        </Box>
+      )}
     </Container>
   );
 };

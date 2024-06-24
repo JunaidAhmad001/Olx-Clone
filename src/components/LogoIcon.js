@@ -6,7 +6,7 @@ function MyCustomIcon(props) {
   return (
     
      <div {...props}>
-      <img style={{width:'100px'}} src={LogoImage} alt='loading..'/>
+      <img style={{width:'80px',height:'50px'}} src={LogoImage} alt='loading..'/>
     </div>
   );
 }
